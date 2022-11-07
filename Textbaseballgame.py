@@ -93,11 +93,11 @@ def print_Result(s, b, o):
 
 def print_Winner(USER_score, PC_score):
     if(USER_score > PC_score):
-        print("당신이 이겼습니다!")
+        print("☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆\n  당신이 이겼습니다!\n☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆")
     elif(USER_score < PC_score):
-        print("당신이 졌어요...")
+        print("  당신이 졌어요...")
     elif(USER_score == PC_score):
-        print("무승부 입니다!")
+        print("  무승부 입니다!")
 
 def Hitter(USER_score, PC_score, inning_num):
     global temporary_storage_Base_1
@@ -118,9 +118,17 @@ def Hitter(USER_score, PC_score, inning_num):
         PC_Picher = percentage_PC_Pitcher()
         # print("PC_Picher: ", PC_Picher) # 컴_투수 위치
         print("스윙할 위치를 선택하세요")
-        Swing = int(input("(not Swing: 0, Swing: 1~4): "))
         
-        
+        ## 문자로 입력받고, 예외처리한 다음, int로 바꾸기
+        Swing = input("(not Swing: 0, Swing: 1~4): ")
+        # 예외처리 (Enter랑, 모든 문자, 2길이 이상 문자. 모두 처리)
+        if ( Swing == "" or (len(Swing) > 1) or not (ord(Swing) >= 48 and ord(Swing) <= 52) ):
+            print("\n###################\n잘못 입력하셨습니다\n###################\n")
+            continue
+        # int로 전환
+        Swing = int(Swing)
+
+
         print("")
         # 투수 던진위치, 타자 친 위치 같이 출력
         print_P_S_Position(PC_Picher, Swing)
@@ -143,7 +151,7 @@ def Hitter(USER_score, PC_score, inning_num):
                 strike = 0
                 ball = 0
                 base = 0
-                print("HomeLearn!!")
+                print("Home run!!")
         else:
             strike +=1
             print("strike!")
@@ -191,7 +199,7 @@ def Hitter(USER_score, PC_score, inning_num):
                 print("\n")
                 print_Winner(USER_score, PC_score) # 승자 판별 후 출력
 
-                exit() # 프로그램 종료
+                replay_Baseballgame() # 다시 플레이할 것인지 판단
 
             print("\n########################")
             print("#이닝 종료!! 공수교대!!#")
@@ -217,7 +225,16 @@ def Picher(USER_score, PC_score, inning_num):
         PC_Hitter = percentage_PC_Hitter()
         # print("PC_Hitter: ", PC_Hitter) # 컴_타자 위치
         print("타자에게 던질 위치를 선택하세요")
-        Picher = int(input("(ball zone: 0, strike zone: 1~4): "))
+        
+        ## 문자로 입력받고, 예외처리한 다음, int로 바꾸기 
+        Picher = input("(ball zone: 0, strike zone: 1~4): ")
+        # 예외처리 (Enter랑, 모든 문자, 2길이 이상 문자. 모두 처리)
+        if ( Picher == "" or (len(Picher) > 1) or not (ord(Picher) >= 48 and ord(Picher) <= 52) ):
+            print("\n###################\n잘못 입력하셨습니다\n###################\n")
+            continue
+        # int로 전환
+        Picher = int(Picher)
+
 
         print("")
         # 투수 던진위치, 타자 친 위치 같이 출력
@@ -241,7 +258,7 @@ def Picher(USER_score, PC_score, inning_num):
                 strike = 0
                 ball = 0
                 base = 0
-                print("HomeLearn!!")
+                print("Home run!!")
         else:
             strike += 1
             print("strike!")
@@ -289,7 +306,7 @@ def Picher(USER_score, PC_score, inning_num):
                 print("\n")
                 print_Winner(USER_score, PC_score) # 승자 판별 후 출력
                 
-                exit() # 프로그램 종료
+                replay_Baseballgame() # 다시 플레이할 것인지 판단
 
             print("\n########################")
             print("#이닝 종료!! 공수교대!!#")
@@ -297,13 +314,30 @@ def Picher(USER_score, PC_score, inning_num):
             Hitter(USER_score, PC_score, inning_num)
 
 def Start_Baseballgame():
-    print("=====start baseballgame=====")
-    select = input("choice attack or defend (a, d): ")
+    print("\n\n#=====start baseballgame=====#\n\n")
+    
+    while (True):
+        choice = input("choice attack or defend (a, d): ")
 
-    if(select == 'a' or select == 'A'):
-        Hitter(USER_score, PC_score, inning_num)
-    elif(select == 'd' or select == 'D'):
-        Picher(USER_score, PC_score, inning_num)
+        if(choice == 'a' or choice == 'A'):
+            Hitter(USER_score, PC_score, inning_num)
+        elif(choice == 'd' or choice == 'D'):
+            Picher(USER_score, PC_score, inning_num)
+        else:
+            print("\n###################\n잘못 입력하셨습니다\n###################\n")
+
+def replay_Baseballgame():
+    while (True):
+        s_s = input("\n\n게임을 다시 시작하시겠습니까? (y, n): ")
+
+        if (s_s == 'Y' or s_s == 'y'):
+            Start_Baseballgame()
+        elif (s_s == 'N' or s_s == 'n'):
+            print("\n프로그램을 종료합니다....")
+            exit() # 프로그램 종료
+        else:
+            print("\n###################\n잘못 입력하셨습니다\n###################\n")
+
 
 
 Start_Baseballgame()
