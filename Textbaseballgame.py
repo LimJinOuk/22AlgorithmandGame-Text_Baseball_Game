@@ -172,17 +172,17 @@ def Hitter(USER_score, PC_score, inning_num):
         print("")
         #base 출력 (함수로 만들면 지역변수 때문에 점수가 안오름)
         if(base == 0):
-            print("     △   \n\n◁         ▷\n\n     ◇")
+            print('{0:>6}'.format("△"),"\n\n","◁",'{0:>6}'.format("▷"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 1):
-            print("     △   \n\n◁         @\n\n     ◇")
+            print('{0:>6}'.format("△"),"\n\n","◁",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 2):
-            print("     @    \n\n◁         @\n\n     ◇")
+            print('{0:>6}'.format("@"),"\n\n","◁",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 3):
-            print("     @    \n\n@         @\n\n     ◇")
+            print('{0:>6}'.format("@"),"\n\n","@",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 4):
             base -= 1
             USER_score += 1
-            print("     @    \n\n@         @\n\n     ◇")
+            print('{0:>6}'.format("@"),"\n\n","@",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         #print("base: %d, score: %d" % (base, USER_score)) # base, score 적용되었는지 확인
         print("")
 
@@ -277,20 +277,20 @@ def Picher(USER_score, PC_score, inning_num):
             print("ball 4번! 1루 진출!")
 
         print("") 
-        #base 출력 (함수로 만들면 지역변수 때문에 점수가 안오름)
+     #base 출력 (함수로 만들면 지역변수 때문에 점수가 안오름)
         if(base == 0):
-            print("     △   \n\n◁         ▷\n\n     ◇")
+            print('{0:>6}'.format("△"),"\n\n","◁",'{0:>6}'.format("▷"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 1):
-            print("     △   \n\n◁         @\n\n     ◇")
+            print('{0:>6}'.format("△"),"\n\n","◁",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 2):
-            print("     @    \n\n◁         @\n\n     ◇")
+            print('{0:>6}'.format("@"),"\n\n","◁",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 3):
-            print("     @    \n\n@         @\n\n     ◇")
+            print('{0:>6}'.format("@"),"\n\n","@",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
         elif(base == 4):
             base -= 1
-            PC_score += 1
-            print("     @    \n\n@         @\n\n     ◇")
-        #print("base: %d, score: %d" % (base, PC_score)) # base, score 적용되었는지 확인
+            USER_score += 1
+            print('{0:>6}'.format("@"),"\n\n","@",'{0:>7}'.format("@"),"\n\n",'{0:>5}'.format("◇"))
+        #print("base: %d, score: %d" % (base, USER_score)) # base, score 적용되었는지 확인
         print("")
 
         #결과 출력
