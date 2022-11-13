@@ -1,15 +1,10 @@
-﻿import random
+import random
 
 PC_score = 0
 USER_score = 0
 inning_num = 0 # 매개변수 이닝: 함수 내에서 변하는 수
 
-# 공수교대 한 후 다시 공격을 때 base에 있던 사람들이 다 초기화되어있음.
-# base 임시 저장 공간
-global temporary_storage_Base_1
-global temporary_storage_Base_2
-temporary_storage_Base_1 = 0
-temporary_storage_Base_2 = 0
+
 
 inning = 2*(3) # 사용자 지정 상수 이닝: (1이닝) (2이닝) (3이닝) 
 strike_out = 3 # 사용자 지정 상수 strike out 값. ex) 값이 1이면, 1strike --> 1out
@@ -100,9 +95,8 @@ def print_Winner(USER_score, PC_score):
         print("  무승부 입니다!")
 
 def Hitter(USER_score, PC_score, inning_num):
-    global temporary_storage_Base_1
-    base = temporary_storage_Base_1 # 전 공격 떄 base를 복원
-
+    
+    base = 0
     strike = 0
     out = 0
     ball = 0
@@ -192,8 +186,7 @@ def Hitter(USER_score, PC_score, inning_num):
         print_Result(strike, ball, out)
 
         if(out == 3):
-            temporary_storage_Base_1 = base # 전 공격 때 base를 보관
-            #print("temporary_storage_Base_1: %d" % temporary_storage_Base_1) # 저장 확인
+            
             inning_num += 1
             if(inning_num == inning): # 2: 1이닝,  4: 2이닝, 6: 3이닝
                 print("\n")
@@ -208,9 +201,8 @@ def Hitter(USER_score, PC_score, inning_num):
 
 
 def Picher(USER_score, PC_score, inning_num):
-    global temporary_storage_Base_2
-    base = temporary_storage_Base_2 # 전 공격 떄 base를 복원
-
+    
+    base = 0
     strike = 0
     out = 0
     ball = 0
@@ -299,8 +291,7 @@ def Picher(USER_score, PC_score, inning_num):
         print_Result(strike, ball, out)
 
         if(out == 3):
-            temporary_storage_Base_2 = base # 전 공격 때 base를 보관
-            #print("temporary_storage_Base_2: %d" % temporary_storage_Base_2) # 저장된 것 확인
+            
             inning_num += 1
             if(inning_num == inning): # 2: 1이닝,  4: 2이닝, 6: 3이닝
                 print("\n")
